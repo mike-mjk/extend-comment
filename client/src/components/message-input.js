@@ -18,7 +18,9 @@ class MessageInput extends Component {
 
 	onMessageSubmit(e) {
 		e.preventDefault();
-		if (this.state.message !== '') {
+		if (this.props.name === '') {
+			alert('Hey, tell us who you are! Enter a username before submitting a message');
+		} else if (this.state.message !== '') {
 			this.props.addMessage(this.state.message);
 			this.setState({ message: '' });
 		}
