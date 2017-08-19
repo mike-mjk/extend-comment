@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class MessageContainer extends Component {
 	renderMessages() {
 		return this.props.messages.map((message, index) => {
-			return <Message key={index} text={message} />;
+			return <Message key={index} message={message} />;
 		});
 	}
 	render() {

@@ -1,10 +1,13 @@
 export const ADD_MESSAGE = 'add_message';
 export const CHANGE_NAME = 'change_name';
 
-export function addMessage(message) {
+export function addMessage(name, message) {
 	return {
 		type: ADD_MESSAGE,
-		payload: message
+		payload: {
+			name: name,
+			message: message
+		}
 	};
 }
 
