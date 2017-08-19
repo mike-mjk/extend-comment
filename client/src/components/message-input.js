@@ -1,33 +1,71 @@
 import React, { Component } from 'react';
-import { FormControl } from 'react-bootstrap';
+import { FormControl, InputGroup, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { addMessage } from '../actions';
+import { addMessage, changeName } from '../actions';
 
 class MessageInput extends Component {
 	constructor(props) {
 		super(props);
 
-		this.onFormSubmit = this.onFormSubmit.bind(this);
+		this.onMessageSubmit = this.onMessageSubmit.bind(this);
+		this.onNameSubmit = this.onNameSubmit.bind(this);
 
 		this.state = {
-			text: ''
+			message: '',
+			name: ''
 		};
 	}
 
-	onFormSubmit(e) {
+	onMessageSubmit(e) {
 		e.preventDefault();
-		if (this.state.text !== '') {
-			this.props.addMessage(this.state.text);
-			this.setState({ text: '' });
+		if (this.state.message !== '') {
+			this.props.addMessage(this.state.message);
+			this.setState({ message: '' });
+		}
+	}
+
+	onNameSubmit(e) {
+		e.preventDefault();
+		if (this.state.name !== '') {
+			this.props.changeName(this.state.name);
+			this.setState({ name: '' });
 		}
 	}
 	render() {
 		return (
-			<form onSubmit={this.onFormSubmit}>
-				<FormControl value={this.state.text} onChange={event => this.setState({ text: event.target.value })} />;
-			</form>
+			<Row>
+				<Col xs={2}>
+					<form onSubmit={this.onNameSubmit}>
+						<FormControl
+							value={this.state.name}
+							placeholder="Enter Username"
+							onChange={event => this.setState({ name: event.target.value })}
+						/>
+					</form>
+				</Col>
+				<Col xs={10}>
+					<form onSubmit={this.onMessageSubmit}>
+						<InputGroup>
+							<InputGroup.Addon>
+								{this.props.name}
+							</InputGroup.Addon>
+							<FormControl
+								value={this.state.message}
+								placeholder="Enter a message"
+								onChange={event => this.setState({ message: event.target.value })}
+							/>
+						</InputGroup>
+					</form>
+				</Col>
+			</Row>
 		);
 	}
 }
 
-export default connect(null, { addMessage })(MessageInput);
+function mapStateToProps(state) {
+	return {
+		name: state.name
+	};
+}
+
+export default connect(mapStateToProps, { addMessage, changeName })(MessageInput);
