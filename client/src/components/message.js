@@ -4,8 +4,12 @@ class Message extends Component {
 	render() {
 		return (
 			<div>
-				{this.props.message.name}
-				{this.props.message.message}
+				<p className="name">
+					{this.props.message.name}
+				</p>
+				<p className="message">
+					{this.props.message.message}
+				</p>
 			</div>
 		);
 	}
