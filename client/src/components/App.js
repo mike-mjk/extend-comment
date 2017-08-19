@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MessageInput from './message-input';
+import '../App.css';
 
 class App extends Component {
   render() {
-    return <div>Hi</div>;
+    return <MessageInput />;
   }
 }
 
