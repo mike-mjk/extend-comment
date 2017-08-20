@@ -24,4 +24,6 @@ This is relatively simple comment app but it includes some attention to detail t
 
 5. If you edit a message to blank, it runs the delete message function. Rather than just have a blank message sitting in the thread. In a production app, you would want to confirm the user wants to delete, of course.
 
-6. Uh, messages travel through time, duh!
+6. The cursor moves to the message input after submitting a name. Nice!
+
+7. Uh, messages travel through time, duh!
