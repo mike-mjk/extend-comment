@@ -10,8 +10,17 @@ class MessageContainer extends Component {
 	}
 	render() {
 		return (
-			<div className="message-container">
-				{this.renderMessages()}
+			<div>
+				<div className="message-container">
+					{this.renderMessages()}
+				</div>
+				<div
+					id="dummy-div"
+					style={{ float: 'left', clear: 'both' }}
+					ref={el => {
+						this.messagesEnd = el;
+					}}
+				/>
 			</div>
 		);
 	}

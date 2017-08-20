@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { FormControl, InputGroup, Row, Col, Clearfix } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addMessage, changeName } from '../actions';
@@ -9,11 +10,17 @@ class MessageInput extends Component {
 
 		this.onMessageSubmit = this.onMessageSubmit.bind(this);
 		this.onNameSubmit = this.onNameSubmit.bind(this);
+		this.scrollToBottom = this.scrollToBottom.bind(this);
 
 		this.state = {
 			message: '',
 			name: ''
 		};
+	}
+
+	scrollToBottom() {
+		const node = document.getElementById('dummy-div');
+		node.scrollIntoView({ behavior: 'smooth', block: 'end' });
 	}
 
 	onMessageSubmit(e) {
@@ -31,6 +38,7 @@ class MessageInput extends Component {
 		} else if (this.state.message !== '') {
 			this.props.addMessage(this.props.name, this.state.message);
 			this.setState({ message: '' });
+			this.scrollToBottom();
 		}
 	}
 
