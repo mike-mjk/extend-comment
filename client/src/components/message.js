@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Modal, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { deleteMessage, editMessage, likeMessage } from '../actions';
+import { deleteMessage, editMessage, likeMessage, unLikeMessage } from '../actions';
+import classNames from 'classnames';
 
 class Message extends Component {
 	constructor(props) {
@@ -38,7 +39,14 @@ class Message extends Component {
 		this.setState({ showModal: false });
 	}
 	render() {
-		let { deleteMessage, likeMessage, index, message, likedBy, numLikes } = this.props;
+		let { name, deleteMessage, likeMessage, index, message } = this.props;
+		let currentlyLiked = message.likedBy.includes(message.name);
+		let likeBtnClass = classNames({
+			hidden: currentlyLiked
+		});
+		let unLikeBtnClass = classNames({
+			hidden: !currentlyLiked
+		});
 		return (
 			<Row className="content">
 				<Col xs={7} xsOffset={2}>
@@ -56,9 +64,16 @@ class Message extends Component {
 						<Button onClick={() => deleteMessage(index)}>Delete</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>
 						<Button
+							className={likeBtnClass}
 							onClick={() => likeMessage(index, message.message, message.name, message.likedBy, message.numLikes)}
 						>
 							Like {message.numLikes}
+						</Button>
+						<Button
+							className={unLikeBtnClass}
+							onClick={() => unLikeMessage(index, message.message, message.name, message.likedBy, message.numLikes)}
+						>
+							Unlike {message.numLikes}
 						</Button>
 						<Modal show={this.state.showModal} onHide={this.close}>
 							<Modal.Body>
@@ -82,8 +97,9 @@ class Message extends Component {
 
 function mapStateToProps(state) {
 	return {
-		messages: state.messages
+		messages: state.messages,
+		name: state.name
 	};
 }
 
-export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage })(Message);
+export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage, unlikeMessage })(Message);

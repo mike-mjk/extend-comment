@@ -40,9 +40,7 @@ export function editMessage(index, message, name, likedBy, numLikes) {
 
 export function likeMessage(index, message, name, likedBy, numLikes) {
 	let incLikes = numLikes + 1;
-	console.log(numLikes, incLikes);
 	likedBy.push(name);
-	console.log('likedby', likedBy);
 	return {
 		type: LIKE_MESSAGE,
 		payload: {
@@ -53,6 +51,10 @@ export function likeMessage(index, message, name, likedBy, numLikes) {
 			numLikes: incLikes
 		}
 	};
+}
+
+export function unLikeMessage(index, message, name, likedBy, numLikes) {
+	let decLikes = numLikes - 1;
 }
 
 export function changeName(name) {
