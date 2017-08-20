@@ -54,7 +54,7 @@ class Message extends Component {
 		});
 		return (
 			<Row className="content">
-				<Col xs={7} xsOffset={2}>
+				<Col md={7} mdOffset={2}>
 					<div>
 						<p className="name">
 							{message.name}
@@ -64,7 +64,7 @@ class Message extends Component {
 						</p>
 					</div>
 				</Col>
-				<Col xs={3} className="aux-panel">
+				<Col md={3} className="aux-panel">
 					<div>
 						<Button className={likeBtnClass} onClick={() => likeMessage(index, message, name)}>
 							Like {message.numLikes}

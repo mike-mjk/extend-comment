@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormControl, InputGroup, Row, Col } from 'react-bootstrap';
+import { FormControl, InputGroup, Row, Col, Clearfix } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addMessage, changeName } from '../actions';
 
@@ -44,7 +44,7 @@ class MessageInput extends Component {
 	render() {
 		return (
 			<Row className="footer">
-				<Col xs={2}>
+				<Col xs={5} sm={2} className="username-input">
 					<form onSubmit={this.onNameSubmit}>
 						<FormControl
 							value={this.state.name}
@@ -53,7 +53,7 @@ class MessageInput extends Component {
 						/>
 					</form>
 				</Col>
-				<Col xs={10}>
+				<Col xs={12} sm={10}>
 					<form onSubmit={this.onMessageSubmit}>
 						<InputGroup>
 							<InputGroup.Addon>
@@ -67,6 +67,7 @@ class MessageInput extends Component {
 						</InputGroup>
 					</form>
 				</Col>
+				<Clearfix />
 				<a href="https://github.com/mike-mjk/comment-app" target="_blank">
 					<i className="fa fa-github fa-lg github" aria-hidden="true" />
 				</a>
