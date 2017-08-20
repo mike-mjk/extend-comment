@@ -14,7 +14,7 @@ This was one of my favorite videos I found about what makes Storybook cool! http
 
 This is relatively simple comment app but it includes some attention to detail that makes it really cool.
 
-1. If you enter a username but don't submit it before submitting a message, the app will pull it in for you if no name has been submitted at all yet. This is much less annoying than being told you must enter a username. It's sitting right there, lets just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
+1. If you enter a username but don't submit it before submitting a message, the app will pull it in for you.. This is much less annoying than being told you must enter a username. It's sitting right there, lets just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
 
 2. The like button functions based off of "current user". So it becomes an unlike button if the user has already liked. I think this is better than just being able to like an unlimited number of times.
 
