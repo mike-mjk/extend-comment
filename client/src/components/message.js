@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Modal, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { deleteMessage, editMessage } from '../actions';
+import { deleteMessage, editMessage, likeMessage } from '../actions';
 
 class Message extends Component {
 	constructor(props) {
@@ -28,26 +28,38 @@ class Message extends Component {
 	onFormSubmit(e) {
 		e.preventDefault();
 		console.log('this', this);
-		this.props.editMessage(this.props.index, this.state.message, this.props.message.name);
+		this.props.editMessage(
+			this.props.index,
+			this.state.message,
+			this.props.message.name,
+			this.props.message.likedBy,
+			this.props.message.numLikes
+		);
 		this.setState({ showModal: false });
 	}
 	render() {
+		let { deleteMessage, likeMessage, index, message, likedBy, numLikes } = this.props;
 		return (
 			<Row className="content">
 				<Col xs={7} xsOffset={2}>
 					<div>
 						<p className="name">
-							{this.props.message.name}
+							{message.name}
 						</p>
 						<p className="message">
-							{this.props.message.message}
+							{message.message}
 						</p>
 					</div>
 				</Col>
 				<Col xs={3}>
 					<div>
-						<Button onClick={() => this.props.deleteMessage(this.props.index)}>Delete</Button>
+						<Button onClick={() => deleteMessage(index)}>Delete</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>
+						<Button
+							onClick={() => likeMessage(index, message.message, message.name, message.likedBy, message.numLikes)}
+						>
+							Like {message.numLikes}
+						</Button>
 						<Modal show={this.state.showModal} onHide={this.close}>
 							<Modal.Body>
 								<form onSubmit={this.onFormSubmit}>
@@ -74,4 +86,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { deleteMessage, editMessage })(Message);
+export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage })(Message);

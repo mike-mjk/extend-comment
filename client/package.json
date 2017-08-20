@@ -7,6 +7,7 @@
     "@storybook/react": "^3.2.5"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.5.4",
