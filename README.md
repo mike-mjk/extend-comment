@@ -14,12 +14,14 @@ This was one of my favorite videos I found about what makes Storybook cool! http
 
 This is relatively simple comment app but it includes some attention to detail that makes it really cool.
 
-1. If you enter a username but don't submit it before submitting a message, the app will pull it in for you.. This is much less annoying than being told you must enter a username. It's sitting right there, lets just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
+1. New messages will be visible as they are added. It scrolls to bottom. I initially used componentDidUpdate for this but that caused a bug in which like or edit or delete caused the scroll to bottom behavior as well. This was fixed by using prevProps and comparing the length of the messages array.
 
-2. The like button functions based off of "current user". So it becomes an unlike button if the user has already liked. I think this is better than just being able to like an unlimited number of times.
+2. If you enter a username but don't submit it before submitting a message, the app will pull it in for you.. This is much less annoying than being told you must enter a username. It's sitting right there, lets just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
 
-3. If you go to edit a message and cancel the changes you've made, the canceled changes will not persist if you go to edit again. 
+3. The like button functions based off of "current user". So it becomes an unlike button if the user has already liked. I think this is better than just being able to like an unlimited number of times.
 
-4. If you edit a message to blank, it runs the delete message function. Rather than just have a blank message sitting in the thread. In a production app, you would want to confirm the user wants to delete, of course.
+4. If you go to edit a message and cancel the changes you've made, the canceled changes will not persist if you go to edit again. 
 
-5. Uh, messages travel through time, duh!
+5. If you edit a message to blank, it runs the delete message function. Rather than just have a blank message sitting in the thread. In a production app, you would want to confirm the user wants to delete, of course.
+
+6. Uh, messages travel through time, duh!

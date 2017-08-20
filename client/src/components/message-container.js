@@ -10,9 +10,10 @@ class MessageContainer extends Component {
 		});
 	}
 
-	componentDidUpdate() {
-		console.log('updated');
-		this.scrollToBottom();
+	componentDidUpdate(prevProps) {
+		if (this.props.messages.length > prevProps.messages.length) {
+			this.scrollToBottom();
+		}
 	}
 
 	scrollToBottom = () => {
