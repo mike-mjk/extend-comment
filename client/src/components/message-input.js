@@ -40,6 +40,7 @@ class MessageInput extends Component {
 		if (this.state.name !== '') {
 			this.props.changeName(this.state.name);
 			this.setState({ name: '' });
+			document.getElementById('message-input').focus();
 		}
 	}
 	render() {
@@ -61,6 +62,7 @@ class MessageInput extends Component {
 								{this.props.name}
 							</InputGroup.Addon>
 							<FormControl
+								id="message-input"
 								value={this.state.message}
 								placeholder="Enter a message"
 								onChange={event => this.setState({ message: event.target.value })}
