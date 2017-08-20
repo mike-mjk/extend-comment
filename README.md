@@ -6,7 +6,7 @@ Thanks for checking out the readme!
 
 ### It's built with Storybook, which was cool to use for the first time.
 
-Working with Storybook added an interesting element to the development process. I can see how it can speed up development(especially when you have a lot of components that can exist in many states. When you can see all those states on the screen at once, things will go so much faster). I look forward to learning how to use it even more effectively and including it on future projects. 
+Working with Storybook added an interesting element to the development process. I can see how it can speed up development (especially when you have a lot of components that can exist in many states. When you can see all those states on the screen at once, things will go so much faster). I look forward to learning how to use it even more effectively and including it on future projects. 
 
 This was one of my favorite videos I found about what makes Storybook cool! https://www.youtube.com/watch?v=UxbQ-cGnoCE
 
