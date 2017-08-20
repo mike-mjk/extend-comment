@@ -66,13 +66,15 @@ class Message extends Component {
 				</Col>
 				<Col xs={3} className="aux-panel">
 					<div>
-						<Button onClick={() => deleteMessage(index)}>Delete</Button>
-						<Button onClick={this.onEditClick}>Edit</Button>
 						<Button className={likeBtnClass} onClick={() => likeMessage(index, message, name)}>
 							Like {message.numLikes}
 						</Button>
 						<Button className={unLikeBtnClass} onClick={() => unLikeMessage(index, message, name)}>
 							Unlike {message.numLikes}
+						</Button>
+						<Button onClick={this.onEditClick}>Edit</Button>
+						<Button bsStyle="danger" onClick={() => deleteMessage(index)}>
+							Delete
 						</Button>
 						<Modal show={this.state.showModal} onHide={this.close}>
 							<Modal.Body>
@@ -85,7 +87,9 @@ class Message extends Component {
 							</Modal.Body>
 							<Modal.Footer>
 								<Button onClick={this.cancel}>Cancel</Button>
-								<Button onClick={this.onFormSubmit}>Save Changes</Button>
+								<Button bsStyle="success" onClick={this.onFormSubmit}>
+									Save Changes
+								</Button>
 							</Modal.Footer>
 						</Modal>
 					</div>

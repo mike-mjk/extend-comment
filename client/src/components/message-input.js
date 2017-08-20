@@ -43,7 +43,7 @@ class MessageInput extends Component {
 	}
 	render() {
 		return (
-			<Row>
+			<Row className="footer">
 				<Col xs={2}>
 					<form onSubmit={this.onNameSubmit}>
 						<FormControl
@@ -67,6 +67,9 @@ class MessageInput extends Component {
 						</InputGroup>
 					</form>
 				</Col>
+				<a href="https://github.com/mike-mjk/comment-app" target="_blank">
+					<i className="fa fa-github fa-lg github" aria-hidden="true" />
+				</a>
 			</Row>
 		);
 	}

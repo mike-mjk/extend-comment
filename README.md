@@ -1,58 +1,23 @@
-# Thinkful Full Stack Template
+# Time Traveling Message App built with React, Redux, and Storybook
 
-A template for developing and deploying full stack JavaScript apps.
+Thanks for checking out the readme!
 
-## Getting started
+## What's cool about this?
 
-### Setting up a project
+### It's built with Storybook, which I had never used before this.
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/Thinkful-Ed/full-stack-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left **un**checked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+It was cool to work with Storybook for the first time. I can see how it can speed up development and I look forward to learning how to use it even more effectively and including it on future projects. 
 
-### Working on the project
+This was one of my favorite videos I found about what makes Storybook cool! https://www.youtube.com/watch?v=UxbQ-cGnoCE
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm run dev`
-    * Starts a server running at http://localhost:8080
-    * Automatically rebuilds when any of your files change
+### Attention to detail.
 
-## Proxying
+This is relatively simple comment app but it includes some attention to detail that makes it really cool.
 
-In development, the full stack template works by proxying requests from port 8080 to the server or the client.  Any requests to routes which start with `/api/`, (for example, `/api/foo`, or `/api/foo/bar`) will be sent to the server.  All other requests, will serve the client.
+1. If you enter a username but don't submit it before submitting a message, the app will pull it in for you if no name has been submitted at all yet. This is much less annoying than being told you must enter a username. It's sitting right there, lets just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
 
-*tl;dr* Make sure your API endpoints start with `/api`.
+2. The like button functions based off of "current user". So it becomes an unlike button if the user has already liked. I think this is better than just being able to like an unlimited number of times.
 
-## Installing dependencies
+3. If you go to edit a message and cancel the changes you've made, the canceled changes will not persist if you go to edit again. 
 
-Client-side dependencies should be installed into the `client` directory:
-
-```
-cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME/client
-npm install --save dependency-name
-```
-
-Server-side dependencies should be installed into the `server` directory:
-
-```
-cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME/server
-npm install --save dependency-name
-```
-
-## Deployment
-
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
-
-### Setting up the project on Heroku
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
-
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
-
+4. If you edit a message to blank, it runs the delete message function. Rather than just have a blank message sitting in the thread. In a production app, you would want to confirm the user wants to delete, of course.
