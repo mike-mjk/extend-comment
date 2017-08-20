@@ -44,7 +44,7 @@ class MessageInput extends Component {
 	render() {
 		return (
 			<Row className="footer">
-				<Col xs={5} sm={2} className="username-input">
+				<Col xs={6} sm={2} className="username-input">
 					<form onSubmit={this.onNameSubmit}>
 						<FormControl
 							value={this.state.name}
