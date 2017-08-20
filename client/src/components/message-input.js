@@ -18,9 +18,13 @@ class MessageInput extends Component {
 
 	onMessageSubmit(e) {
 		e.preventDefault();
-		console.log(e.target);
 		if (this.props.name === '') {
-			alert('Hey, tell us who you are! Enter a username before submitting a message');
+			if (this.state.name !== '') {
+				this.onNameSubmit(e);
+				this.props.addMessage(this.state.name, this.state.message);
+			} else {
+				alert('Hey, tell us who you are! Enter a username before submitting a message');
+			}
 		} else if (this.state.message !== '') {
 			this.props.addMessage(this.props.name, this.state.message);
 			this.setState({ message: '' });
@@ -29,7 +33,6 @@ class MessageInput extends Component {
 
 	onNameSubmit(e) {
 		e.preventDefault();
-		console.log('this', this, 'this.props', this.props);
 		if (this.state.name !== '') {
 			this.props.changeName(this.state.name);
 			this.setState({ name: '' });
