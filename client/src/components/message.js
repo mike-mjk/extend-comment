@@ -10,16 +10,17 @@ class Message extends Component {
 
 		this.state = {
 			showModal: false,
-			message: this.props.message.message
+			message: this.props.message.message,
+			tempMessage: this.props.message.message
 		};
 
 		this.onEditClick = this.onEditClick.bind(this);
-		this.close = this.close.bind(this);
+		this.cancel = this.cancel.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
-	close() {
-		this.setState({ showModal: false });
+	cancel() {
+		this.setState({ showModal: false, tempMessage: this.props.message.message });
 	}
 
 	onEditClick() {
@@ -31,7 +32,7 @@ class Message extends Component {
 		console.log('this', this);
 		this.props.editMessage(
 			this.props.index,
-			this.state.message,
+			this.state.tempMessage,
 			this.props.message.name,
 			this.props.message.likedBy,
 			this.props.message.numLikes
@@ -73,13 +74,14 @@ class Message extends Component {
 							<Modal.Body>
 								<form onSubmit={this.onFormSubmit}>
 									<FormControl
-										value={this.state.message}
-										onChange={event => this.setState({ message: event.target.value })}
+										value={this.state.tempMessage}
+										onChange={event => this.setState({ tempMessage: event.target.value })}
 									/>
 								</form>
 							</Modal.Body>
 							<Modal.Footer>
-								<Button onClick={this.close}>Close</Button>
+								<Button onClick={this.cancel}>Cancel</Button>
+								<Button onClick={this.onFormSubmit}>Save Changes</Button>
 							</Modal.Footer>
 						</Modal>
 					</div>
