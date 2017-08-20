@@ -23,11 +23,13 @@ export function deleteMessage(index) {
 }
 
 export function editMessage(index, message) {
-	type: EDIT_MESSAGE,
-	payload: {
-		index: index,
-		message: message
-	}
+	return {
+		type: EDIT_MESSAGE,
+		payload: {
+			index: index,
+			message: message
+		}
+	};
 }
 
 export function changeName(name) {
