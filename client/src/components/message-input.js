@@ -28,6 +28,7 @@ class MessageInput extends Component {
 
 	onNameSubmit(e) {
 		e.preventDefault();
+		console.log('this', this, 'this.props', this.props);
 		if (this.state.name !== '') {
 			this.props.changeName(this.state.name);
 			this.setState({ name: '' });

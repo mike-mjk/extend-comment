@@ -22,12 +22,13 @@ export function deleteMessage(index) {
 	};
 }
 
-export function editMessage(index, message) {
+export function editMessage(index, message, name) {
 	return {
 		type: EDIT_MESSAGE,
 		payload: {
 			index: index,
-			message: message
+			message: message,
+			name: name
 		}
 	};
 }
