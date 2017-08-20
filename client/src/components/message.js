@@ -30,13 +30,17 @@ class Message extends Component {
 	onFormSubmit(e) {
 		e.preventDefault();
 		console.log('this', this);
-		this.props.editMessage(
-			this.props.index,
-			this.state.tempMessage,
-			this.props.message.name,
-			this.props.message.likedBy,
-			this.props.message.numLikes
-		);
+		if (this.state.tempMessage !== '') {
+			this.props.editMessage(
+				this.props.index,
+				this.state.tempMessage,
+				this.props.message.name,
+				this.props.message.likedBy,
+				this.props.message.numLikes
+			);
+		} else if (this.state.tempMessage === '') {
+			this.props.deleteMessage(this.props.index);
+		}
 		this.setState({ showModal: false });
 	}
 	render() {
