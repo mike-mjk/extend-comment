@@ -3,6 +3,7 @@ export const CHANGE_NAME = 'change_name';
 export const DELETE_MESSAGE = 'delete_message';
 export const EDIT_MESSAGE = 'edit_message';
 export const LIKE_MESSAGE = 'like_message';
+export const UNLIKE_MESSAGE = 'like_message';
 
 export function addMessage(name, message) {
 	return {
@@ -38,23 +39,33 @@ export function editMessage(index, message, name, likedBy, numLikes) {
 	};
 }
 
-export function likeMessage(index, message, name, likedBy, numLikes) {
-	let incLikes = numLikes + 1;
-	likedBy.push(name);
+export function likeMessage(index, message, liker) {
+	let incLikes = message.numLikes + 1;
+	message.likedBy.push(liker);
 	return {
 		type: LIKE_MESSAGE,
 		payload: {
 			index: index,
-			message: message,
-			name: name,
-			likedBy: likedBy,
+			message: message.message,
+			name: message.name,
+			likedBy: message.likedBy,
 			numLikes: incLikes
 		}
 	};
 }
 
-export function unLikeMessage(index, message, name, likedBy, numLikes) {
-	let decLikes = numLikes - 1;
+export function unLikeMessage(index, message, unliker) {
+	let decLikes = message.numLikes - 1;
+	return {
+		type: UNLIKE_MESSAGE,
+		payload: {
+			index: index,
+			message: message.message,
+			name: message.name,
+			likedBy: message.likedBy,
+			numLikes: decLikes
+		}
+	};
 }
 
 export function changeName(name) {

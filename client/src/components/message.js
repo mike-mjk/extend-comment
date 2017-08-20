@@ -40,7 +40,7 @@ class Message extends Component {
 	}
 	render() {
 		let { name, deleteMessage, likeMessage, index, message } = this.props;
-		let currentlyLiked = message.likedBy.includes(message.name);
+		let currentlyLiked = message.likedBy.includes(name);
 		let likeBtnClass = classNames({
 			hidden: currentlyLiked
 		});
@@ -63,16 +63,10 @@ class Message extends Component {
 					<div>
 						<Button onClick={() => deleteMessage(index)}>Delete</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>
-						<Button
-							className={likeBtnClass}
-							onClick={() => likeMessage(index, message.message, message.name, message.likedBy, message.numLikes)}
-						>
+						<Button className={likeBtnClass} onClick={() => likeMessage(index, message, name)}>
 							Like {message.numLikes}
 						</Button>
-						<Button
-							className={unLikeBtnClass}
-							onClick={() => unLikeMessage(index, message.message, message.name, message.likedBy, message.numLikes)}
-						>
+						<Button className={unLikeBtnClass} onClick={() => unLikeMessage(index, message, name)}>
 							Unlike {message.numLikes}
 						</Button>
 						<Modal show={this.state.showModal} onHide={this.close}>
@@ -102,4 +96,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage, unlikeMessage })(Message);
+export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage, unLikeMessage })(Message);
