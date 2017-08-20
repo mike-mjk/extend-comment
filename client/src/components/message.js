@@ -39,7 +39,7 @@ class Message extends Component {
 		this.setState({ showModal: false });
 	}
 	render() {
-		let { name, deleteMessage, likeMessage, index, message } = this.props;
+		let { name, deleteMessage, likeMessage, unLikeMessage, index, message } = this.props;
 		let currentlyLiked = message.likedBy.includes(name);
 		let likeBtnClass = classNames({
 			hidden: currentlyLiked

@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, DELETE_MESSAGE, EDIT_MESSAGE, LIKE_MESSAGE } from '../actions';
+import { ADD_MESSAGE, DELETE_MESSAGE, EDIT_MESSAGE, LIKE_MESSAGE, UNLIKE_MESSAGE } from '../actions';
 
 export default function(
 	state = [
@@ -24,6 +24,17 @@ export default function(
 				...state.slice(action.payload.index + 1)
 			];
 		case LIKE_MESSAGE:
+			return [
+				...state.slice(0, action.payload.index),
+				{
+					name: action.payload.name,
+					message: action.payload.message,
+					likedBy: action.payload.likedBy,
+					numLikes: action.payload.numLikes
+				},
+				...state.slice(action.payload.index + 1)
+			];
+		case UNLIKE_MESSAGE:
 			return [
 				...state.slice(0, action.payload.index),
 				{

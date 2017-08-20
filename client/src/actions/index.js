@@ -56,6 +56,8 @@ export function likeMessage(index, message, liker) {
 
 export function unLikeMessage(index, message, unliker) {
 	let decLikes = message.numLikes - 1;
+	let indexOfLiker = message.likedBy.indexOf(unliker);
+	message.likedBy.splice(indexOfLiker, 1);
 	return {
 		type: UNLIKE_MESSAGE,
 		payload: {
