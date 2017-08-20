@@ -4,9 +4,9 @@ Thanks for checking out the readme!
 
 ## What's cool about this?
 
-### It's built with Storybook, which I had never used before this.
+### It's built with Storybook, which was cool to use for the first time.
 
-It was cool to work with Storybook for the first time. I can see how it can speed up development and I look forward to learning how to use it even more effectively and including it on future projects. 
+Working with Storybook added an interesting element to the development process. I can see how it can speed up development(especially when you have a lot of components that can exist in many states. When you can see all those states on the screen at once, things will go so much faster). I look forward to learning how to use it even more effectively and including it on future projects. 
 
 This was one of my favorite videos I found about what makes Storybook cool! https://www.youtube.com/watch?v=UxbQ-cGnoCE
 
@@ -21,3 +21,5 @@ This is relatively simple comment app but it includes some attention to detail t
 3. If you go to edit a message and cancel the changes you've made, the canceled changes will not persist if you go to edit again. 
 
 4. If you edit a message to blank, it runs the delete message function. Rather than just have a blank message sitting in the thread. In a production app, you would want to confirm the user wants to delete, of course.
+
+5. Uh, messages travel through time, duh!
