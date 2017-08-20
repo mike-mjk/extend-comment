@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Message from './message';
 import { connect } from 'react-redux';
 
@@ -8,6 +9,17 @@ class MessageContainer extends Component {
 			return <Message key={index} message={message} index={index} />;
 		});
 	}
+
+	componentDidUpdate() {
+		console.log('updated');
+		this.scrollToBottom();
+	}
+
+	scrollToBottom = () => {
+		const node = ReactDOM.findDOMNode(this.messagesEnd);
+		node.scrollIntoView({ behavior: 'smooth' });
+	};
+
 	render() {
 		return (
 			<div>
