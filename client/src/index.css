@@ -13,6 +13,11 @@ body {
 
 .message {
 	font-weight: normal;
+	color: #555459;
+}
+
+.content {
+	margin-bottom: 8px;
 }
 
 .content:hover {
