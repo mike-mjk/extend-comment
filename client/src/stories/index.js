@@ -15,10 +15,11 @@ import '../bootstrap/css/bootstrap.css';
 
 import Message from '../components/message';
 import MessageContainer from '../components/message-container';
+import MessageInput from '../components/message-input';
 
 const store = createStore(reducers); // storiesOf('Message', module).add('with text', () => <Message text="This is some text" />);
 
-// storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 // storiesOf('Button', module)
 // 	.add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
@@ -37,3 +38,10 @@ storiesOf('Message', module)
 		</Provider>
 	)
 	.add('Message', () => <Message message={{ name: 'mike', message: 'Hey there', numLikes: 10, likedBy: [] }} />);
+storiesOf('MessageInput', module)
+	.addDecorator(story =>
+		<Provider store={store}>
+			{story()}
+		</Provider>
+	)
+	.add('Message Input', () => <MessageInput />);
