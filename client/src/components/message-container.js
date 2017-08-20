@@ -10,7 +10,7 @@ class MessageContainer extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className="message-container">
 				{this.renderMessages()}
 			</div>
 		);

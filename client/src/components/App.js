@@ -8,7 +8,9 @@ class App extends Component {
 	render() {
 		return (
 			<Grid>
-				<MessageContainer />
+				<div id="message-container" className="tall style-1">
+					<MessageContainer />
+				</div>
 				<MessageInput />;
 			</Grid>
 		);

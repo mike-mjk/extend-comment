@@ -59,7 +59,7 @@ class Message extends Component {
 						</p>
 					</div>
 				</Col>
-				<Col xs={3}>
+				<Col xs={3} className="aux-panel">
 					<div>
 						<Button onClick={() => deleteMessage(index)}>Delete</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>

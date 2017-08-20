@@ -8,23 +8,32 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../reducers';
 
+import '../index.css';
+import '../bootstrap/css/bootstrap.css';
+
 // import { Button, Welcome } from '@storybook/react/demo';
 
 import Message from '../components/message';
 import MessageContainer from '../components/message-container';
 
-const store = createStore(reducers);
+const store = createStore(reducers); // storiesOf('Message', module).add('with text', () => <Message text="This is some text" />);
 
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 // storiesOf('Button', module)
 // 	.add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
 // 	.add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
-storiesOf('Message', module).add('with text', () => <Message text="This is some text" />);
 storiesOf('MessageContainer', module)
 	.addDecorator(story =>
 		<Provider store={store}>
 			{story()}
 		</Provider>
 	)
-	.add('React Component', () => <MessageContainer messages={['heyya', 'another message']} />);
+	.add('Message Container', () => <MessageContainer />);
+storiesOf('Message', module)
+	.addDecorator(story =>
+		<Provider store={store}>
+			{story()}
+		</Provider>
+	)
+	.add('Message', () => <Message message={{ name: 'mike', message: 'Hey there', numLikes: 10, likedBy: [] }} />);
