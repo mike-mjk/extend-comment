@@ -31,6 +31,15 @@ body {
 	display: block;
 }
 
+@media only screen and (max-width: 768px) {
+	.content:active {
+		background-color: #f9f9f9;
+	}
+
+	.content:active .aux-panel {
+		display: block;
+	}
+}
 p {
 	margin: 0;
 }
