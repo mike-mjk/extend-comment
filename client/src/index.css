@@ -32,11 +32,11 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-	.content:active {
+	.content:focus {
 		background-color: #f9f9f9;
 	}
 
-	.content:active .aux-panel {
+	.content:focus .aux-panel {
 		display: block;
 	}
 }
