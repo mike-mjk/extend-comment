@@ -44,6 +44,7 @@
     "whatwg-fetch": "2.0.2"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.2",
