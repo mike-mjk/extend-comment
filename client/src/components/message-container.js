@@ -26,6 +26,7 @@ class MessageContainer extends Component {
 			<div>
 				<div className="message-container">
 					{this.renderMessages()}
+					Hiya
 				</div>
 				<div
 					id="dummy-div"
