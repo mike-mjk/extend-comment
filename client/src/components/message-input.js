@@ -1,8 +1,10 @@
+import axios from 'axios';
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { FormControl, InputGroup, Row, Col, Clearfix } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { addMessage, changeName } from '../actions';
+import { addMessage, addUser } from '../actions';
 
 class MessageInput extends Component {
 	constructor(props) {
@@ -38,7 +40,7 @@ class MessageInput extends Component {
 	onNameSubmit(e) {
 		e.preventDefault();
 		if (this.state.name !== '') {
-			this.props.changeName(this.state.name);
+			this.props.addUser(this.state.name);
 			this.setState({ name: '' });
 			document.getElementById('message-input').focus();
 		}
@@ -85,4 +87,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { addMessage, changeName })(MessageInput);
+export default connect(mapStateToProps, { addMessage, addUser })(MessageInput);

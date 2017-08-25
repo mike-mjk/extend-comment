@@ -1,5 +1,5 @@
 export const ADD_MESSAGE = 'add_message';
-export const CHANGE_NAME = 'change_name';
+export const ADD_USER = 'add_user';
 export const DELETE_MESSAGE = 'delete_message';
 export const EDIT_MESSAGE = 'edit_message';
 export const LIKE_MESSAGE = 'like_message';
@@ -72,9 +72,9 @@ export function unLikeMessage(index, message, unliker) {
 	};
 }
 
-export function changeName(name) {
+export function addUser(name) {
 	return {
-		type: CHANGE_NAME,
+		type: ADD_USER,
 		payload: name
 	};
 }
