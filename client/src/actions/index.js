@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const ADD_MESSAGE = 'add_message';
 export const ADD_USER = 'add_user';
 export const DELETE_MESSAGE = 'delete_message';
@@ -72,9 +73,21 @@ export function unLikeMessage(index, message, unliker) {
 	};
 }
 
+// export function addUserDELETEME(name) {
+// 	return {
+// 		type: ADD_USER,
+// 		payload: name
+// 	};
+// }
+
 export function addUser(name) {
+	let params = {
+		name: name
+	};
+	const request = axios.post(`${ROOT_URL}/users`, params);
+
 	return {
 		type: ADD_USER,
-		payload: name
+		payload: request
 	};
 }
