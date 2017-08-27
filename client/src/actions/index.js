@@ -73,21 +73,21 @@ export function unLikeMessage(index, message, unliker) {
 	};
 }
 
-// export function addUserDELETEME(name) {
-// 	return {
-// 		type: ADD_USER,
-// 		payload: name
-// 	};
-// }
-
 export function addUser(name) {
-	let params = {
-		name: name
-	};
-	const request = axios.post(`${ROOT_URL}/users`, params);
-
 	return {
 		type: ADD_USER,
-		payload: request
+		payload: name
 	};
 }
+
+// export function addUser(name) {
+// 	let params = {
+// 		name: name
+// 	};
+// 	const request = axios.post(`${ROOT_URL}/users`, params);
+
+// 	return {
+// 		type: ADD_USER,
+// 		payload: request
+// 	};
+// }

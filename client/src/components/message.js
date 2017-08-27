@@ -45,7 +45,9 @@ class Message extends Component {
 	}
 	render() {
 		let { name, deleteMessage, likeMessage, unLikeMessage, index, message } = this.props;
-		let currentlyLiked = message.likedBy.includes(name);
+		console.log('message in message', message);
+		//fix me changed while graphql setup
+		let currentlyLiked = true; //message.likedBy.includes(name);
 		let likeBtnClass = classNames({
 			hidden: currentlyLiked
 		});
@@ -57,7 +59,7 @@ class Message extends Component {
 				<Col md={7} mdOffset={2}>
 					<div>
 						<p className="name">
-							{message.name}
+							{message.user.name}
 						</p>
 						<p className="message">
 							{message.message}
@@ -106,4 +108,5 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage, unLikeMessage })(Message);
+// export default connect(mapStateToProps, { deleteMessage, editMessage, likeMessage, unLikeMessage })(Message);
+export default Message;

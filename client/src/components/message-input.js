@@ -4,7 +4,12 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { FormControl, InputGroup, Row, Col, Clearfix } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { addMessage, addUser } from '../actions';
+import { addUser } from '../actions';
+import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
+import createUser from '../queries/create-user';
+import createMessage from '../queries/create-message';
+import allMessages from '../queries/get-all-messages';
 
 class MessageInput extends Component {
 	constructor(props) {
@@ -15,24 +20,39 @@ class MessageInput extends Component {
 
 		this.state = {
 			message: '',
-			name: ''
+			name: '',
+			activeName: ''
 		};
 	}
 
 	onMessageSubmit(e) {
 		e.preventDefault();
-		if (this.props.name === '') {
-			if (this.state.name !== '') {
-				this.onNameSubmit(e);
-				this.props.addMessage(this.state.name, this.state.message);
-				this.setState({ message: '' });
+		if (!this.state.activeName) {
+			console.log('A');
+			if (this.state.name) {
+				console.log('B');
+				// this.onNameSubmit(e); //async set state problem this way when calling createMessage
+				this.props.createUser({ variables: { name: this.state.name } });
+
+				// this.props.addMessage(this.state.name, this.state.message); LEGACY
+				this.props.createMessage({
+					variables: { name: this.state.name, message: this.state.message },
+					refetchQueries: [{ allMessages }]
+				});
+				this.setState({ activeName: this.state.name });
+
+				this.setState({ message: '', name: '' });
 			} else {
 				alert('Hey, tell us who you are! Enter a username before submitting a message');
 			}
 		} else if (this.state.message === '') {
 			alert('Make sure to enter a message before submitting');
 		} else if (this.state.message !== '') {
-			this.props.addMessage(this.props.name, this.state.message);
+			// this.props.addMessage(this.props.name, this.state.message); LEGACY
+			this.props.createMessage({
+				variables: { name: this.state.activeName, message: this.state.message },
+				refetchQueries: [{ allMessages }]
+			});
 			this.setState({ message: '' });
 		}
 	}
@@ -40,7 +60,9 @@ class MessageInput extends Component {
 	onNameSubmit(e) {
 		e.preventDefault();
 		if (this.state.name !== '') {
-			this.props.addUser(this.state.name);
+			this.props.createUser({ variables: { name: this.state.name } });
+			// this.props.addUser(this.state.name);
+			this.setState({ activeName: this.state.name });
 			this.setState({ name: '' });
 			document.getElementById('message-input').focus();
 		}
@@ -61,7 +83,7 @@ class MessageInput extends Component {
 					<form onSubmit={this.onMessageSubmit}>
 						<InputGroup>
 							<InputGroup.Addon>
-								{this.props.name}
+								{this.state.activeName}
 							</InputGroup.Addon>
 							<FormControl
 								id="message-input"
@@ -81,10 +103,14 @@ class MessageInput extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		name: state.name
-	};
-}
+// function mapStateToProps(state) {
+// 	return {
+// 		name: state.name
+// 	};
+// }
 
-export default connect(mapStateToProps, { addMessage, addUser })(MessageInput);
+export default compose(graphql(createMessage, { name: 'createMessage' }), graphql(createUser, { name: 'createUser' }))(
+	MessageInput
+);
+
+// export default graphql(createMessage)(MessageInput);

@@ -1,18 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
 import App from './components/App';
 import './index.css';
 
-let store = createStore(reducers, composeWithDevTools());
+import ApolloClient from 'apollo-client';
+import { ApolloProvider, createNetworkInterface } from 'react-apollo';
+
+const networkInterface = createNetworkInterface({
+	uri: 'http://bl-comment-api.herokuapp.com/graphql'
+});
+
+const client = new ApolloClient({
+	networkInterface: networkInterface
+});
+
+// let store = createStore(combineReducers({ reducers, apollo: client.reducer() }), composeWithDevTools());
 
 ReactDOM.render(
-	<Provider store={store}>
+	<ApolloProvider client={client}>
 		<App />
-	</Provider>,
+	</ApolloProvider>,
 	document.getElementById('root')
 );
