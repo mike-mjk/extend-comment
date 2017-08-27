@@ -37,7 +37,7 @@ class MessageInput extends Component {
 				// this.props.addMessage(this.state.name, this.state.message); LEGACY
 				this.props.createMessage({
 					variables: { name: this.state.name, message: this.state.message },
-					refetchQueries: [{ allMessages }]
+					refetchQueries: [{ query: allMessages }]
 				});
 				this.setState({ activeName: this.state.name });
 
@@ -51,7 +51,7 @@ class MessageInput extends Component {
 			// this.props.addMessage(this.props.name, this.state.message); LEGACY
 			this.props.createMessage({
 				variables: { name: this.state.activeName, message: this.state.message },
-				refetchQueries: [{ allMessages }]
+				refetchQueries: [{ query: allMessages }]
 			});
 			this.setState({ message: '' });
 		}

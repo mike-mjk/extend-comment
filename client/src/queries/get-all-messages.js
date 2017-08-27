@@ -4,6 +4,7 @@ export default gql`
 	query allMessages {
 		allMessages {
 			message
+			id
 			user {
 				name
 			}

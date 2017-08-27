@@ -8,9 +8,10 @@ import allMessages from '../queries/get-all-messages';
 
 class MessageContainer extends Component {
 	renderMessages() {
-		return this.props.data.allMessages.map((message, index) => {
+		console.log(this.props.data.allMessages);
+		return this.props.data.allMessages.map(message => {
 			console.log('message', message.message);
-			return <Message key={index} message={message} index={index} />;
+			return <Message key={message.id} message={message} index={message.id} />;
 		});
 	}
 
