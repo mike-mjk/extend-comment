@@ -12,7 +12,7 @@ import ApolloClient from 'apollo-client';
 import { ApolloProvider, createNetworkInterface } from 'react-apollo';
 
 const networkInterface = createNetworkInterface({
-	uri: 'https://bl-comment-api.herokuapp.com/graphql'
+	uri: 'http://bl-comment-api.herokuapp.com/graphql'
 });
 
 const client = new ApolloClient({

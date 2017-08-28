@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, Glyphicon } from 'react-bootstrap';
 
 class UserComp extends Component {
 	constructor(props) {
@@ -14,7 +14,7 @@ class UserComp extends Component {
 	render() {
 		return (
 			<ListGroupItem onClick={this.handleClick}>
-				{this.props.name}
+				{this.props.name} <Glyphicon glyph="trash" />
 			</ListGroupItem>
 		);
 	}

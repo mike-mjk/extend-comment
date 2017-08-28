@@ -1,14 +1,23 @@
-# Time Traveling Message App built with React, Redux, and Storybook
+# Time Traveling Message App Part 2
 
-Thanks for checking out the readme!
+Thanks for the opportunity to extend this project with a backend built with Ruby on Rails, GraphQL, PostgreSQL!
 
 ## What's cool about this?
 
-### It's built with Storybook, which was cool to use for the first time.
+### It's built with a number of new technologies for me
 
-Working with Storybook added an interesting element to the development process. I can see how it can speed up development (especially when you have a lot of components that can exist in many states. When you can see all those states on the screen at once, things will go so much faster). I look forward to learning how to use it even more effectively and including it on future projects. 
+GraphQL and Apollo are slick! It was really fun to use these for the first time. I used GraphQL and Apollo for all of my queries and mutations. I learned a lot about working with these techs: Basic queries and mutations, refetching queries, compose, and general Apollo setup.
 
-This was one of my favorite videos I found about what makes Storybook cool! https://www.youtube.com/watch?v=UxbQ-cGnoCE
+The backend for this project is built Ruby on Rails, PostgreSQL and Ruby's GraphQL. I learned a lot about Ruby and using ActiveRecord. And I learned about using SQL databases and structuring tables for one to many relationships, and many to many relationships. 
+
+At one point, editing a message caused it to move to the bottom of the message thread. This was fixed by adding this line:
+
+default_scope -> { order(:created_at) }
+
+At another point, a user wasn't able to delete a message that had likes associated with it. This was caused by the message having a foreign key associated with it. It was fixed by adding this line to the message model: 
+
+has_many :likes, dependent: :destroy
+
 
 ### Attention to detail.
 
@@ -16,7 +25,7 @@ This is relatively simple comment app but it includes some attention to detail t
 
 1. New messages will be visible as they are added. It scrolls to bottom. I initially used componentDidUpdate for this but that caused a bug in which like or edit or delete caused the scroll to bottom behavior as well. This was fixed by using prevProps and comparing the length of the messages array.
 
-2. If you enter a username but don't submit it before submitting a message, the app will pull it in for you.. This is much less annoying than being told you must enter a username. It's sitting right there, lets just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
+2. If you enter a username but don't submit it before submitting a message, the app will pull it in for you. This is much less annoying than being told you must enter a username. It's sitting right there, let's just grab it and use it. Importantly, it won't overwrite an existing username in the case where a name has been submitted and there is also one in the input field.
 
 3. The like button functions based off of "current user". So it becomes an unlike button if the user has already liked. I think this is better than just being able to like an unlimited number of times.
 
