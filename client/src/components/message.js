@@ -58,18 +58,20 @@ class Message extends Component {
 		let { name, deleteMessage, likeMessage, unlikeMessage, index, message } = this.props;
 		//fix me changed while graphql setup
 		let currentlyLiked = false;
-		console.log('this.props', this.props);
+		// console.log('this.props', this.props);
 		if (this.props.likedByUser.loading === false) {
 			console.log('this.props.likedByUser.likedByUser', this.props.likedByUser.likedByUser);
-			if (this.props.likedByUser.likedByUser !== null) console.log('HERE');
-			currentlyLiked = true;
+			if (this.props.likedByUser.likedByUser !== null) {
+				console.log('HERE');
+				currentlyLiked = true;
+			}
 		}
 		// let currentlyLiked = ; //message.likedBy.includes(name);
 		let likeBtnClass = classNames({
-			hidden: !currentlyLiked
+			hidden: currentlyLiked
 		});
 		let unLikeBtnClass = classNames({
-			hidden: currentlyLiked
+			hidden: !currentlyLiked
 		});
 		console.log('currentlyLiked', currentlyLiked);
 		return (
@@ -88,11 +90,32 @@ class Message extends Component {
 					<div>
 						<Button
 							className={likeBtnClass}
-							onClick={() => likeMessage({ variables: { user_id: this.props.activeNameId, message_id: index } })}
+							onClick={() =>
+								likeMessage({
+									variables: { user_id: this.props.activeNameId, message_id: index },
+									refetchQueries: [
+										{
+											query: likedByUser,
+											variables: { user_id: this.props.activeNameId, message_id: this.props.index }
+										}
+									]
+								})}
 						>
 							Like {message.numLikes}
 						</Button>
-						<Button className={unLikeBtnClass} onClick={() => unlikeMessage(index, message, name)}>
+						<Button
+							className={unLikeBtnClass}
+							onClick={() =>
+								unlikeMessage({
+									variables: { user_id: this.props.activeNameId, message_id: index },
+									refetchQueries: [
+										{
+											query: likedByUser,
+											variables: { user_id: this.props.activeNameId, message_id: this.props.index }
+										}
+									]
+								})}
+						>
 							Unlike {message.numLikes}
 						</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>
