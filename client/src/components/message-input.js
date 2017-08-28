@@ -84,6 +84,7 @@ class MessageInput extends Component {
 							value={this.state.name}
 							placeholder="Enter Username"
 							onChange={event => this.setState({ name: event.target.value })} //moving state up
+							onBlur={this.onNameSubmit}
 							// onChange={this.handleNameChange}
 						/>
 					</form>
