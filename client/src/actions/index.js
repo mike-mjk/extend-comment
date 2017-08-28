@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 export const ADD_MESSAGE = 'add_message';
 export const ADD_USER = 'add_user';
 export const DELETE_MESSAGE = 'delete_message';
@@ -6,7 +6,7 @@ export const EDIT_MESSAGE = 'edit_message';
 export const LIKE_MESSAGE = 'like_message';
 export const UNLIKE_MESSAGE = 'like_message';
 
-const ROOT_URL = 'https://bl-comment-api.herokuapp.com';
+// const ROOT_URL = 'https://bl-comment-api.herokuapp.com';
 
 export function addMessage(name, message) {
 	return {
