@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col, Button, Modal, FormControl } from 'react-bootstrap';
-// import { connect } from 'react-redux';
-// import { deleteMessage, editMessage, likeMessage, unLikeMessage } from '../actions'; //LEGACY
 import classNames from 'classnames';
 import deleteMessage from '../queries/delete-message';
 import updateMessage from '../queries/update-message';
@@ -76,7 +74,7 @@ class Message extends Component {
 		});
 		return (
 			<Row className="content">
-				<Col md={7} mdOffset={2}>
+				<Col md={7}>
 					<div>
 						<p className="name">
 							{message.user.name}

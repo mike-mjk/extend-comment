@@ -4,6 +4,8 @@ import Message from './message';
 import { graphql, compose } from 'react-apollo';
 import allMessages from '../queries/get-all-messages';
 import userByName from '../queries/user-by-name';
+import UserList from './user-list';
+import { Row, Col } from 'react-bootstrap';
 
 class MessageContainer extends Component {
 	renderMessages() {
@@ -54,7 +56,14 @@ class MessageContainer extends Component {
 			return (
 				<div>
 					<div className="message-container">
-						{this.renderMessages()}
+						<Row>
+							<Col md={2}>
+								<UserList />
+							</Col>
+							<Col md={10}>
+								{this.renderMessages()}
+							</Col>
+						</Row>
 					</div>
 					<div
 						id="dummy-div"
