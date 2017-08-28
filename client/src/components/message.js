@@ -23,6 +23,8 @@ class Message extends Component {
 		this.onEditClick = this.onEditClick.bind(this);
 		this.cancel = this.cancel.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
+		this.handleLike = this.handleLike.bind(this);
+		this.handleUnlike = this.handleUnlike.bind(this);
 	}
 
 	cancel() {
@@ -51,6 +53,41 @@ class Message extends Component {
 			this.props.deleteMessage({ variables: { id: this.props.index }, refetchQueries: [{ query: allMessages }] });
 		}
 		this.setState({ showModal: false });
+	}
+
+	handleLike() {
+		if (this.props.activeNameId === 0) {
+			alert('Please enter a username in order to like a message');
+		} else
+			this.props.likeMessage({
+				variables: { user_id: this.props.activeNameId, message_id: this.props.index },
+				refetchQueries: [
+					{
+						query: likedByUser,
+						variables: { user_id: this.props.activeNameId, message_id: this.props.index }
+					},
+					{
+						query: totalLikes,
+						variables: { message_id: this.props.index }
+					}
+				]
+			});
+	}
+
+	handleUnlike() {
+		this.props.unlikeMessage({
+			variables: { user_id: this.props.activeNameId, message_id: this.props.index },
+			refetchQueries: [
+				{
+					query: likedByUser,
+					variables: { user_id: this.props.activeNameId, message_id: this.props.index }
+				},
+				{
+					query: totalLikes,
+					variables: { message_id: this.props.index }
+				}
+			]
+		});
 	}
 	render() {
 		let numLikes = 0;
@@ -86,42 +123,10 @@ class Message extends Component {
 				</Col>
 				<Col md={3} className="aux-panel">
 					<div>
-						<Button
-							className={likeBtnClass}
-							onClick={() =>
-								likeMessage({
-									variables: { user_id: this.props.activeNameId, message_id: index },
-									refetchQueries: [
-										{
-											query: likedByUser,
-											variables: { user_id: this.props.activeNameId, message_id: this.props.index }
-										},
-										{
-											query: totalLikes,
-											variables: { message_id: this.props.index }
-										}
-									]
-								})}
-						>
+						<Button className={likeBtnClass} onClick={this.handleLike}>
 							Like {numLikes}
 						</Button>
-						<Button
-							className={unLikeBtnClass}
-							onClick={() =>
-								unlikeMessage({
-									variables: { user_id: this.props.activeNameId, message_id: index },
-									refetchQueries: [
-										{
-											query: likedByUser,
-											variables: { user_id: this.props.activeNameId, message_id: this.props.index }
-										},
-										{
-											query: totalLikes,
-											variables: { message_id: this.props.index }
-										}
-									]
-								})}
-						>
+						<Button className={unLikeBtnClass} onClick={this.handleUnlike}>
 							Unlike {numLikes}
 						</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>

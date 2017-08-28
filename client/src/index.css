@@ -60,7 +60,7 @@ button {
 /*----------------------------------*/
 
 .tall {
-	height: 78vh;
+	height: 74vh;
 	/*max-height: 79vh;*/
 	/*overflow-y: scroll;*/
 	overflow-x: hidden;
@@ -68,19 +68,19 @@ button {
 
 @media only screen and (max-width: 768px) {
 	.tall {
-		height: 74vh;
+		height: 72vh;
 	}
 }
 
 @media only screen and (max-width: 562px) {
 	.tall {
-		height: 70vh;
+		height: 68vh;
 	}
 }
 
 @media only screen and (max-width: 332px) {
 	.tall {
-		height: 66vh;
+		height: 64vh;
 	}
 }
 
@@ -149,4 +149,14 @@ h1 {
 
 .list-group-item {
 	margin-bottom: .01%;
+}
+
+/*githubs*/
+.githubs {
+	margin-top: 10px;
+}
+
+/*user list heading*/
+h4 {
+	text-align: center;
 }

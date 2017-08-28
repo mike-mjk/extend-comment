@@ -14,7 +14,7 @@ class UserComp extends Component {
 	render() {
 		return (
 			<ListGroupItem onClick={this.handleClick}>
-				{this.props.name} <Glyphicon glyph="trash" />
+				{this.props.name}
 			</ListGroupItem>
 		);
 	}

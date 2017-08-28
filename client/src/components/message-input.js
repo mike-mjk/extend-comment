@@ -105,9 +105,20 @@ class MessageInput extends Component {
 					</form>
 				</Col>
 				<Clearfix />
-				<a href="https://github.com/mike-mjk/comment-app" target="_blank">
-					<i className="fa fa-github fa-lg github" aria-hidden="true" />
-				</a>
+				<Row className="githubs">
+					<Col xs={1} xsOffset={5}>
+						<a href="https://github.com/mike-mjk/extend-comment" target="_blank">
+							<i className="fa fa-github fa-lg github" aria-hidden="true" />
+						</a>{' '}
+						Frontend
+					</Col>
+					<Col xs={1}>
+						<a href="https://github.com/mike-mjk/comment-api" target="_blank">
+							<i className="fa fa-github fa-lg github" aria-hidden="true" />
+						</a>{' '}
+						Backend
+					</Col>
+				</Row>
 			</Row>
 		);
 	}
