@@ -106,13 +106,13 @@ class MessageInput extends Component {
 				</Col>
 				<Clearfix />
 				<Row className="githubs">
-					<Col xs={1} xsOffset={5}>
+					<Col xs={1} xsOffset={4}>
 						<a href="https://github.com/mike-mjk/extend-comment" target="_blank">
 							<i className="fa fa-github fa-lg github" aria-hidden="true" />
 						</a>{' '}
 						Frontend
 					</Col>
-					<Col xs={1}>
+					<Col xs={1} xsOffset={1}>
 						<a href="https://github.com/mike-mjk/comment-api" target="_blank">
 							<i className="fa fa-github fa-lg github" aria-hidden="true" />
 						</a>{' '}

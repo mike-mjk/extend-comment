@@ -15,7 +15,7 @@ class UserList extends Component {
 			return <div>Hi</div>;
 		} else {
 			return (
-				<div>
+				<div className="user-list">
 					<h4>User List</h4>
 					<ListGroup>
 						{this.renderList()}
