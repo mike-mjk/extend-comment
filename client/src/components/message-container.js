@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Message from './message';
-// import { connect } from 'react-redux';
-// import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import allMessages from '../queries/get-all-messages';
 import userByName from '../queries/user-by-name';
@@ -37,11 +35,10 @@ class MessageContainer extends Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		//fix this to be graphql
 		if (!this.props.allMessages.loading) {
-			// if (this.props.data.allMessages.length > prevProps.data.allMessages.length) {
-			// 	this.scrollToBottom();
-			// }
+			if (this.props.allMessages.allMessages.length > prevProps.allMessages.allMessages.length) {
+				this.scrollToBottom();
+			}
 		}
 	}
 
