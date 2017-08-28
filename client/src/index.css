@@ -154,6 +154,7 @@ h1 {
 /*githubs*/
 .githubs {
 	margin-top: 10px;
+	text-align: center;
 }
 
 /*user list heading*/
@@ -165,5 +166,8 @@ h4 {
 	.user-list {
 		display: none;
 	}
+	.githubs a {
+		position: relative;
+		left: 15px;
+	}
 }
-

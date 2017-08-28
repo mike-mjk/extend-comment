@@ -110,13 +110,13 @@ class MessageInput extends Component {
 						<a href="https://github.com/mike-mjk/extend-comment" target="_blank">
 							<i className="fa fa-github fa-lg github" aria-hidden="true" />
 						</a>{' '}
-						Frontend
+						<p>Frontend</p>
 					</Col>
 					<Col xs={1} xsOffset={1}>
 						<a href="https://github.com/mike-mjk/comment-api" target="_blank">
 							<i className="fa fa-github fa-lg github" aria-hidden="true" />
 						</a>{' '}
-						Backend
+						<p>Backend</p>
 					</Col>
 				</Row>
 			</Row>
