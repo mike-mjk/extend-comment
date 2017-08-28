@@ -9,17 +9,31 @@ import userByName from '../queries/user-by-name';
 
 class MessageContainer extends Component {
 	renderMessages() {
-		return this.props.allMessages.allMessages.map(message => {
-			return (
-				<Message
-					activeNameId={this.props.userByName.userByName.id}
-					activeName={this.props.activeName}
-					key={message.id}
-					message={message}
-					index={message.id}
-				/>
-			);
-		});
+		if (this.props.userByName.userByName === null) {
+			return this.props.allMessages.allMessages.map(message => {
+				return (
+					<Message
+						activeNameId={0}
+						activeName={this.props.activeName}
+						key={message.id}
+						message={message}
+						index={message.id}
+					/>
+				);
+			});
+		} else {
+			return this.props.allMessages.allMessages.map(message => {
+				return (
+					<Message
+						activeNameId={this.props.userByName.userByName.id}
+						activeName={this.props.activeName}
+						key={message.id}
+						message={message}
+						index={message.id}
+					/>
+				);
+			});
+		}
 	}
 
 	componentDidUpdate(prevProps) {
@@ -37,15 +51,13 @@ class MessageContainer extends Component {
 	};
 
 	render() {
-		console.log('this.props in message-container', this.props);
 		if (this.props.allMessages.loading) {
-			return <div>loading</div>;
+			return <div>Loading... Which can take some time while the free version of heroku starts up the backend API</div>;
 		} else
 			return (
 				<div>
 					<div className="message-container">
 						{this.renderMessages()}
-						Hiya
 					</div>
 					<div
 						id="dummy-div"

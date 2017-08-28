@@ -13,7 +13,7 @@ class App extends Component {
 	}
 
 	onNameChange(name) {
-		this.setState({ activeName: 'Mike' });
+		this.setState({ activeName: name });
 	}
 
 	render() {

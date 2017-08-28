@@ -28,10 +28,7 @@ class MessageInput extends Component {
 	onMessageSubmit(e) {
 		e.preventDefault();
 		if (!this.props.activeName) {
-			console.log('A');
-			console.log('this.state.name', this.state.name);
 			if (this.state.name) {
-				console.log('B');
 				// this.onNameSubmit(e); //async set state problem this way when calling createMessage
 				this.props.createUser({ variables: { name: this.state.name } });
 
@@ -65,12 +62,13 @@ class MessageInput extends Component {
 	onNameSubmit(e) {
 		e.preventDefault();
 		if (this.state.name !== '') {
-			this.props.createUser({ variables: { name: this.state.name } });
+			this.props.createUser({ variables: { name: this.state.name } }).then(() => {
+				this.props.onNameChange(this.state.name);
+				this.setState({ name: '' });
+				document.getElementById('message-input').focus();
+			});
 			// this.props.addUser(this.state.name);
 			// this.setState({ activeName: this.state.name }); //moving state up
-			this.props.onNameChange(this.state.name);
-			this.setState({ name: '' });
-			document.getElementById('message-input').focus();
 		}
 	}
 
@@ -78,7 +76,6 @@ class MessageInput extends Component {
 	// 	this.props.onNameChange(e.target.value);
 	// }
 	render() {
-		console.log('this.props in message-input', this.props);
 		return (
 			<Row className="footer">
 				<Col xs={6} sm={2} className="username-input">

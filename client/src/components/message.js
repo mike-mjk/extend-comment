@@ -54,15 +54,11 @@ class Message extends Component {
 		this.setState({ showModal: false });
 	}
 	render() {
-		console.log('this.props in message', this.props);
 		let { name, deleteMessage, likeMessage, unlikeMessage, index, message } = this.props;
 		//fix me changed while graphql setup
 		let currentlyLiked = false;
-		// console.log('this.props', this.props);
 		if (this.props.likedByUser.loading === false) {
-			console.log('this.props.likedByUser.likedByUser', this.props.likedByUser.likedByUser);
 			if (this.props.likedByUser.likedByUser !== null) {
-				console.log('HERE');
 				currentlyLiked = true;
 			}
 		}
@@ -73,7 +69,6 @@ class Message extends Component {
 		let unLikeBtnClass = classNames({
 			hidden: !currentlyLiked
 		});
-		console.log('currentlyLiked', currentlyLiked);
 		return (
 			<Row className="content">
 				<Col md={7} mdOffset={2}>
