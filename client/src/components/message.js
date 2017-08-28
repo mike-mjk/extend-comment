@@ -74,7 +74,7 @@ class Message extends Component {
 		});
 		return (
 			<Row className="content">
-				<Col md={7}>
+				<Col md={9}>
 					<div>
 						<p className="name">
 							{message.user.name}

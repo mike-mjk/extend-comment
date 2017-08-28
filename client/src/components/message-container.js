@@ -36,13 +36,13 @@ class MessageContainer extends Component {
 		}
 	}
 
-	componentDidUpdate(prevProps) {
-		if (!this.props.allMessages.loading) {
-			if (this.props.allMessages.allMessages.length > prevProps.allMessages.allMessages.length) {
-				this.scrollToBottom();
-			}
-		}
-	}
+	// componentDidUpdate(prevProps) {
+	// 	if (!this.props.allMessages.loading) {
+	// 		if (this.props.allMessages.allMessages.length > prevProps.allMessages.allMessages.length) {
+	// 			this.scrollToBottom();
+	// 		}
+	// 	}
+	// }
 
 	scrollToBottom = () => {
 		const node = ReactDOM.findDOMNode(this.messagesEnd);
@@ -58,7 +58,7 @@ class MessageContainer extends Component {
 					<div className="message-container">
 						<Row>
 							<Col md={2}>
-								<UserList />
+								<UserList onNameChange={this.props.onNameChange} />
 							</Col>
 							<Col md={10}>
 								{this.renderMessages()}

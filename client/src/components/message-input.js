@@ -9,6 +9,7 @@ import { graphql, compose } from 'react-apollo';
 import createUser from '../queries/create-user';
 import createMessage from '../queries/create-message';
 import allMessages from '../queries/get-all-messages';
+import allUsers from '../queries/all-users';
 
 class MessageInput extends Component {
 	constructor(props) {
@@ -58,11 +59,13 @@ class MessageInput extends Component {
 	onNameSubmit(e) {
 		e.preventDefault();
 		if (this.state.name !== '') {
-			this.props.createUser({ variables: { name: this.state.name } }).then(() => {
-				this.props.onNameChange(this.state.name);
-				this.setState({ name: '' });
-				document.getElementById('message-input').focus();
-			});
+			this.props
+				.createUser({ variables: { name: this.state.name }, refetchQueries: [{ query: allUsers }] })
+				.then(() => {
+					this.props.onNameChange(this.state.name);
+					this.setState({ name: '' });
+					document.getElementById('message-input').focus();
+				});
 		}
 	}
 

@@ -21,7 +21,7 @@ class App extends Component {
 			<Grid>
 				<Header />
 				<div id="message-container" className="tall style-1">
-					<MessageContainer activeName={this.state.activeName} />
+					<MessageContainer onNameChange={this.onNameChange} activeName={this.state.activeName} />
 				</div>
 				<MessageInput onNameChange={this.onNameChange} activeName={this.state.activeName} />
 			</Grid>
