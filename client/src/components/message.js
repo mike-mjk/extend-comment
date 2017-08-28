@@ -10,6 +10,7 @@ import allMessages from '../queries/get-all-messages';
 import likeMessage from '../queries/like-message';
 import unlikeMessage from '../queries/unlike-message';
 import likedByUser from '../queries/liked-by-user';
+import totalLikes from '../queries/total-likes';
 
 class Message extends Component {
 	constructor(props) {
@@ -54,6 +55,10 @@ class Message extends Component {
 		this.setState({ showModal: false });
 	}
 	render() {
+		let numLikes = 0;
+		if (this.props.totalLikes.totalLikes) {
+			numLikes = this.props.totalLikes.totalLikes.length;
+		}
 		let { name, deleteMessage, likeMessage, unlikeMessage, index, message } = this.props;
 		//fix me changed while graphql setup
 		let currentlyLiked = false;
@@ -92,11 +97,15 @@ class Message extends Component {
 										{
 											query: likedByUser,
 											variables: { user_id: this.props.activeNameId, message_id: this.props.index }
+										},
+										{
+											query: totalLikes,
+											variables: { message_id: this.props.index }
 										}
 									]
 								})}
 						>
-							Like {message.numLikes}
+							Like {numLikes}
 						</Button>
 						<Button
 							className={unLikeBtnClass}
@@ -107,11 +116,15 @@ class Message extends Component {
 										{
 											query: likedByUser,
 											variables: { user_id: this.props.activeNameId, message_id: this.props.index }
+										},
+										{
+											query: totalLikes,
+											variables: { message_id: this.props.index }
 										}
 									]
 								})}
 						>
-							Unlike {message.numLikes}
+							Unlike {numLikes}
 						</Button>
 						<Button onClick={this.onEditClick}>Edit</Button>
 						<Button
@@ -162,5 +175,11 @@ export default compose(
 			return { variables: { user_id: props.activeNameId, message_id: props.index } };
 		},
 		name: 'likedByUser'
+	}),
+	graphql(totalLikes, {
+		options: props => {
+			return { variables: { message_id: props.index } };
+		},
+		name: 'totalLikes'
 	})
 )(Message);
