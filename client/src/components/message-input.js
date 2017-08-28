@@ -16,7 +16,8 @@ class MessageInput extends Component {
 
 		this.onMessageSubmit = this.onMessageSubmit.bind(this);
 		this.onNameSubmit = this.onNameSubmit.bind(this);
-		// this.handleNameChange = this.handleNameChange.bind(this);
+		this.updateNameInputState = this.updateNameInputState.bind(this);
+		this.updateMessageInputState = this.updateMessageInputState.bind(this);
 
 		this.state = {
 			message: '',
@@ -37,11 +38,6 @@ class MessageInput extends Component {
 					variables: { name: this.state.name, message: this.state.message },
 					refetchQueries: [{ query: allMessages }]
 				});
-
-				//DEAL WITH THIS XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-				// this.setState({ activeName: this.state.name }); //
-				//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-				//check line below
 				this.props.onNameChange(this.state.name);
 				this.setState({ message: '', name: '' });
 			} else {
@@ -67,14 +63,16 @@ class MessageInput extends Component {
 				this.setState({ name: '' });
 				document.getElementById('message-input').focus();
 			});
-			// this.props.addUser(this.state.name);
-			// this.setState({ activeName: this.state.name }); //moving state up
 		}
 	}
 
-	// handleNameChange(e) {
-	// 	this.props.onNameChange(e.target.value);
-	// }
+	updateNameInputState(e) {
+		this.setState({ name: e.target.value });
+	}
+
+	updateMessageInputState(e) {
+		this.setState({ message: e.target.value });
+	}
 	render() {
 		return (
 			<Row className="footer">
@@ -83,9 +81,8 @@ class MessageInput extends Component {
 						<FormControl
 							value={this.state.name}
 							placeholder="Enter Username"
-							onChange={event => this.setState({ name: event.target.value })} //moving state up
+							onChange={this.updateNameInputState}
 							onBlur={this.onNameSubmit}
-							// onChange={this.handleNameChange}
 						/>
 					</form>
 				</Col>
@@ -99,7 +96,7 @@ class MessageInput extends Component {
 								id="message-input"
 								value={this.state.message}
 								placeholder="Enter a message"
-								onChange={event => this.setState({ message: event.target.value })}
+								onChange={this.updateMessageInputState}
 							/>
 						</InputGroup>
 					</form>
